@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+</head>
+
+<body>
+    
+    <h1>Registration</h1>
+    
+    <div th:if="${httpStatus}" style="color: red;">
+        <span th:text="${httpStatus}"></span>
+        <span>Your contact details can be found <a th:href="@{'/contact/' + ${contact.id}}">here</a></span>
+    <br>
+    </div>
+    
+    <form action="/contact" method="post" th:object="${contact}">
+        <p>Name: <input type="text" th:field="*{name}"></p>
+        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:errorclass="error"
+            style="color: red;"></p>
+
+        <p>Email: <input type="email" th:field="*{email}"></p>
+        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:errorclass="error"
+            style="color: red;"></p>
+
+        <p>Phone number: <input type="number" th:field="*{phone}"></p>
+        <p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" th:errorclass="error"
+            style="color: red;"></p>
+
+        <p>Date of birth: <input type="date" th:field="*{dob}"></p>
+        <p th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}" th:errorclass="error"
+        style="color: red;"></p>
+        <div th:if="${#fields.hasErrors('global')}">
+            <p th:each="err:${#fields.errors('global')}" th:text="${err}" class="error" style="color: red;">
+            </p>
+        </div>
+        
+        <button type="submit">Register</button>
+    </form>
+
+    <br><p>Click <a href="/address-book">here</a> to see a list of the contacts in the address book</p>
+
+    <br><div>Go back to <a href="/">home</a></div>
+    
+
+</body>
+
+</html>

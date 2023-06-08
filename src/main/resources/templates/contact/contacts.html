@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Address Book</title>
+</head>
+
+<body>
+    <h1>Address Book</h1>
+
+    <div th:if="${httpStatus}" style="color: red;">
+        <p th:text="${httpStatus}"></p>
+    </div>
+
+    <div th:if="${contactsList}">
+        <h2>Contact ID:</h2>
+
+        <ul>
+            <span th:each="contact:${contactsList}">
+                <li th:each="map:${contact}">
+                    <a th:text="${map.key}" th:href="'/contact/' + ${map.value}"></a>
+                </li>
+            </span>
+        </ul>
+    </div>
+
+    <p>Register your contact <a href="/registration">here</a></p>
+
+</body>
+
+</html>

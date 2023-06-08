@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Details</title>
+</head>
+
+<body>
+    <div action="/contact" method="get" data-th-object="${contact}">
+        <h1>Contact Details</h1>
+        
+        <table>
+            <tr>
+                <td>ID:</td>
+                <td><span th:text="*{id}"></span></td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td><span th:text="*{name}"></span></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><span th:text="*{email}"></span></td>
+            </tr>
+            <tr>
+                <td width="130">Phone number:  </td>
+                <td><span th:text="*{phone}"></span></td>
+            </tr>
+            <tr>
+                <td>Date of birth:</td>
+                <td><span th:text="${#temporals.format(contact.dob, 'dd-MM-yyyy')}"></span></td>
+            </tr>
+        </table>
+    </div>
+    <br>
+
+    <p>Click <a href="/address-book">here</a> to see a list of the contacts in the address book</p>
+</body>
+
+</html>
